@@ -1,4 +1,6 @@
-# Utilisation de l'API GPT-3 pour améliorer un texte :
+# Utilisation de l'API GPT-3 pour améliorer un texte
+
+L'idée est d'améliorer automatiquement un document texte (mémoire, thèse, livre, etc.). Il ne faut pas prendre le résultat de l'algorithme comme une solution, mais comme un corpus de phrase utile à l'inspiration.
 
 **Préalable :**
 
@@ -40,6 +42,9 @@ pip install python-decouple
 touch .env
 OPENAI_API_KEY=key_value
 ```
+
+
+Temps d'un document de 70 pages :
 
 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 270/270 [1:12:57<00:00, 16.21s/it]
 
