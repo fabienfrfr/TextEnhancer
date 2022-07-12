@@ -64,3 +64,5 @@ Dans la société, il est important de répartir équitablement les richesses po
 
 L'équité est importante dans la société, car elle permet de répartir équitablement les richesses entre les différents membres de la société. Lorsqu'une personne est mal rémunérée, elle peut devenir jalouse de ses voisins ou collègues, ce qui peut créer des tensions et des conflits. L'équité permet donc d'éviter les conflits sociaux et de maintenir la paix et l'harmonie entre les membres de la société.
 ```
+
+![1](/Knowledge_ClutterNothingness.jpg)
