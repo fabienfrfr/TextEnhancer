@@ -19,7 +19,7 @@ Améliore :
 "Le chômage augmente en raison du remplacement progressif du travail par les machines. La concurrence déloyale est également un problème. Il est donc temps de repenser notre système de redistribution."
 ```
 
-Faire un script qui extrait tous le texte d'un mémoire, puis donner en entrée chaque phrase dans l'API :
+Script qui extrait tous le texte d'un mémoire, puis donne en entrée chaque phrase dans l'API
 
 (https://beta.openai.com/docs/quickstart/build-your-application)
 
@@ -34,7 +34,7 @@ API installation :
 pip3 install openai
 ```
 
-Create "OPENAI_API_KEY" environement variable :
+Create "OPENAI_API_KEY" environement variable (la clé est relié au compte, il est necessaire de s'inscrire ou se connecter via un compte google):
 
 ```bash
 pip install python-decouple
@@ -43,6 +43,7 @@ touch .env
 OPENAI_API_KEY=key_value
 ```
 
+Personnelement, j'ai deux compte (donc 2 secret keys) au cas où je depasse mon quota de requete de la journée (utiliser avec parcimonie)
 
 Temps d'un document de 70 pages :
 

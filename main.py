@@ -8,8 +8,7 @@ from tqdm import tqdm
 ## Decouple environment
 from decouple import config
 os.environ["OPENAI_API_KEY"] = config('OPENAI_API_KEY')
-# verify (OR) : os.environ["OPENAI_API_KEY"] = "key_value"
-keys = [k for k in os.environ if("OPENAI" in k)]
+#keys = [k for k in os.environ if("OPENAI" in k)]
 #API gpt3
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -54,13 +53,12 @@ def gpt3_completion(df) :
 				## gpt-3
 				response = openai.Completion.create(
 					model="text-davinci-002", 
-					prompt="Améliore : " + value, 
+					prompt="Améliore en Français : " + value, 
 					temperature=0.7, 
 					max_tokens=2048)
 				# extract text
 				new_text = response["choices"][0]["text"]
 				df.loc[index, col] = new_text
-	return df
 
 ## run
 if __name__ == '__main__':
@@ -78,6 +76,7 @@ if __name__ == '__main__':
 	print('[INFO] Completion of each texts')
 	new_texts = texts.copy()
 	new_texts.pop('line')
-	new_texts = gpt3_completion(new_texts)
+	## NEED TO IMPROVE : save checkpoint if quota exceed
+	gpt3_completion(new_texts)
 	print('[INFO] Save to csv')
 	new_texts.to_csv(OUTPUT_FILE, sep=';', index=False)
