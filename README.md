@@ -2,6 +2,11 @@
 
 L'idée est d'améliorer automatiquement un document texte (mémoire, thèse, livre, etc.). Il ne faut pas prendre le résultat de l'algorithme comme une solution, mais comme un corpus de phrase utile à l'inspiration.
 
+Ce code a été utilisé pour l'amélioration de mon "Essai" (Revenu au Mérite : https://www.coollibri.com/bibliotheque-en-ligne/fabien-furfaro/revenu-au-merite_346951).
+
+###### Attribution required : Fabien Furfaro (CC 4.0 BY NC ND SA)
+
+
 **Préalable :**
 
 Convertir un fichier "document" (.doc, .odt, etc.) en fichiers ".txt" dans le logitiel de traitement de texte adapté. 
@@ -43,7 +48,7 @@ touch .env
 OPENAI_API_KEY=key_value
 ```
 
-Personnelement, j'ai deux compte (donc 2 secret keys) au cas où je depasse mon quota de requete de la journée (utiliser avec parcimonie)
+Personnelement, j'ai deux compte (donc 2 secret keys) au cas où je depasse mon quota de requete de la journée (utiliser avec parcimonie : 18$ offerts uniquement)
 
 Temps d'un document de 70 pages :
 
