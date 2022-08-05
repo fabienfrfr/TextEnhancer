@@ -1,7 +1,7 @@
 # fabienfrfr 20220712
 # Import package
 import os, argparse
-import openai
+import openai, re
 import numpy as np, pandas as pd
 from tqdm import tqdm
 
@@ -58,6 +58,10 @@ def gpt3_completion(df) :
 					max_tokens=2048)
 				# extract text
 				new_text = response["choices"][0]["text"]
+				# sparse text
+				new_text = re.sub('\n','. ', new_text)
+				new_text = re.sub(';','.', new_text)
+				# save
 				df.loc[index, col] = new_text
 
 ## run
