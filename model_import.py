@@ -1,7 +1,9 @@
-#20220805 fabienfrfr
+# 20220805 fabienfrfr
 
 '''
 Touseef Iqbal 2020; The survey: Text generation models in deep learning
+
+WORK IN PROGESS
 https://www.kdnuggets.com/2020/01/guide-natural-language-generation.html https://www.youtube.com/watch?v=dT1aKuUsKUE
 USING MARKOV CHAIN STRUCTURED GRAPH & LSTM (simple model)
 
@@ -16,29 +18,39 @@ import re, os
 import dlib, torch
 import json
 
+from utils import split_into_sentences, sentence_to_vectors
+
 path = "dataset/sherlock.txt"
 
+
 with open(os.path.join(os.path.dirname(__file__), path)) as f:
-	text = f.read() #see test_basic.py, text.py, splitters.py
+	text = f.read()
 
-	splitted = text.split('\n')
-
-	#to_json = json.dumps(dict(splitted)) # test_basic.py 
+sentences = split_into_sentences(text)
+# Make an array of arrays of dlib.vector objects.
+training_sequences = dlib.vectorss()
+for s in sentences :
+	training_sequences.append(sentence_to_vectors(s))
+# init train
+params = dlib.segmenter_params()
+params.window_size = 3
+params.use_high_order_features = True
+params.use_BIO_model = True
+# common SVM parameter
+params.C = 10
+# Train a model Monte Carlo Markov Chain
+model = dlib.train_sequence_segmenter(training_sequences, sentences, params) # overloaded function
+for i, s in enumerate(sentences):
+	print(model(training_sequences[i]))
+# save markov chain model
+#to_json = json.dumps(dict(splitted)) # test_basic.py 
 
 '''
-
-dlib.train_sequence_segmenter()
 
 """
 Goal : Train 2 type of model, first Markov Chain (without markovify module, here with dlib), and the second, with LSTM seq2seq.
 
 """
-
-
-
-
-
-
 
 from torch import nn
 
