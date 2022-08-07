@@ -16,11 +16,13 @@ https://www.kaggle.com/code/ab971631/beginners-guide-to-text-generation-pytorch/
 
 import re, os
 import dlib, torch
+import numpy as np
 import json
 
 from utils import split_into_sentences, sentence_to_vectors
 
 path = "dataset/sherlock.txt"
+words = "dataset/1-1000.txt"
 
 
 with open(os.path.join(os.path.dirname(__file__), path)) as f:
@@ -28,6 +30,7 @@ with open(os.path.join(os.path.dirname(__file__), path)) as f:
 
 sentences = split_into_sentences(text)
 # Make an array of arrays of dlib.vector objects.
+# objective : find a uncommon English Word
 training_sequences = dlib.vectorss()
 for s in sentences :
 	training_sequences.append(sentence_to_vectors(s))
@@ -38,10 +41,12 @@ params.use_high_order_features = True
 params.use_BIO_model = True
 # common SVM parameter
 params.C = 10
-# Train a model Monte Carlo Markov Chain
+# Train a model Monte Carlo Markov Chain (see also Hidden Markov Models)
 model = dlib.train_sequence_segmenter(training_sequences, sentences, params) # overloaded function
+copy = np.copy(model)
 for i, s in enumerate(sentences):
 	print(model(training_sequences[i]))
+print('[Done]')
 # save markov chain model
 #to_json = json.dumps(dict(splitted)) # test_basic.py 
 
