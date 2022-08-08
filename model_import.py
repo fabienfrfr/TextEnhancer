@@ -14,21 +14,62 @@ https://www.kdnuggets.com/2020/07/pytorch-lstm-text-generation-tutorial.html
 https://www.kaggle.com/code/ab971631/beginners-guide-to-text-generation-pytorch/notebook
 '''
 
+## Lib
 import re, os
 import dlib, torch
 import numpy as np
 import json
 
+from collections import Counter
+
 from utils import split_into_sentences, sentence_to_vectors
 
+import nltk
+try:
+ 	nltk.data.find('tokenizers/punkt')
+except LookupError:
+	nltk.download('punkt')
+
+
+## Init
 path = "dataset/sherlock.txt"
 words = "dataset/1-1000.txt"
 
+texts = []
+for p in [path, words] :
+	with open(os.path.join(os.path.dirname(__file__), p)) as f:
+		texts += [f.read()]
 
-with open(os.path.join(os.path.dirname(__file__), path)) as f:
-	text = f.read()
+text = texts[0]
+words_list = texts[1].split('\n')
 
 sentences = split_into_sentences(text)
+
+## Transition matrix
+T = {w:[] for w in words_list}
+for s in sentences :
+	simplified = [ss for ss in nltk.word_tokenize(s) if ss in words_list]
+	for i in range(len(simplified)-1) :
+		T[simplified[i]] += [simplified[i+1]]
+	if len(simplified) > 0 :
+		T[simplified[-1]] += ['END']
+for k in list(T.keys()):
+	if len(T[k]) == 0 :
+		T.pop(k, None)
+
+R = T.copy()
+for k,v in R.items():
+	R[k] = dict(Counter(v))
+
+## Testing
+sentence_gen = [np.random.choice(list(T.keys()))]
+while sentence_gen[-1] != 'END' :
+	prev = sentence_gen[-1]
+	sentence_gen += [np.random.choice(T[prev])]
+print(sentence_gen)
+## Segment following uncommon word
+
+"""
 # Make an array of arrays of dlib.vector objects.
 # objective : find a uncommon English Word
 training_sequences = dlib.vectorss()
@@ -50,6 +91,9 @@ print('[Done]')
 # save markov chain model
 #to_json = json.dumps(dict(splitted)) # test_basic.py 
 
+
+
+"""
 '''
 
 """
