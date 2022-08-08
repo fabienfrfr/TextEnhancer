@@ -70,6 +70,12 @@ print(sentence_gen)
 ## Segment following uncommon word
 
 """
+
+# direct
+model = nltk.tag.hmm.HiddenMarkovModelTrainer()
+
+# nltk permet aussi de creer des chatbots
+
 # Make an array of arrays of dlib.vector objects.
 # objective : find a uncommon English Word
 training_sequences = dlib.vectorss()

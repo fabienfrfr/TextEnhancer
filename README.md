@@ -4,6 +4,16 @@ L'idée est d'améliorer automatiquement un document texte (mémoire, thèse, li
 
 Ce code a été utilisé pour l'amélioration de mon "Essai" (Revenu au Mérite : https://www.coollibri.com/bibliotheque-en-ligne/fabien-furfaro/revenu-au-merite_346951).
 
+
+Using :
+	
+	- openai
+	- pandas
+	- regex
+	- nltk *
+	- dlib *
+	- torch *
+
 ###### Attribution required : Fabien Furfaro (CC 4.0 BY NC ND SA)
 
 
